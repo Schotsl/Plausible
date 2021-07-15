@@ -29,11 +29,19 @@ export class PlausibleAPI {
     return await response.json();
   }
 
+  /**
+   * This function returns the number of current visitors on your site. A current visitor is defined as a visitor who triggered a pageview on your site in the last 5 minutes.
+   */
+
   public getRealtime(): Promise<number> {
     return this.getAbstract(`api/v1/stats/realtime/visitors`);
   }
 
   // TODO: Allow multiple metrics
+
+  /**
+   * This function aggregates metrics over a certain time period. If you are familiar with the Plausible dashboard, this function corresponds to the top row of stats that include Unique Visitors, Pageviews, Bounce rate and Visit duration. You can retrieve any number and combination of these metrics in one request.
+   */
 
   public getAggregate(
     period: Period,
@@ -54,6 +62,10 @@ export class PlausibleAPI {
 
   // TODO: Metrics seems to do nothing
 
+  /**
+   * This function provides timeseries data over a certain time period. If you are familiar with the Plausible dashboard, this function corresponds to the main visitor graph.
+   */
+
   public getTimeseries(
     period: Period,
     metrics?: Metrics,
@@ -70,6 +82,12 @@ export class PlausibleAPI {
 
     return this.getAbstract(`api/v1/stats/timeseries`, params);
   }
+
+  /**
+   * This function allows you to breakdown your stats by some property. If you are familiar with SQL family databases, this function corresponds to running GROUP BY on a certain property in your stats.
+   * 
+   * Check out the [properties](https://plausible.io/docs/stats-api#properties) section for a reference of all the properties you can use in this query.
+   */
 
   public getBreakdown(
     period: Period,
