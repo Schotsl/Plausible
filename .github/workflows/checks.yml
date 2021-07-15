@@ -25,18 +25,18 @@ jobs:
       - name: Run Deno lint
         run: deno lint
 
-  Test:
-    name: Test
-    runs-on: ubuntu-latest
+  # Test:
+  #   name: Test
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Checkout sources
+  #       uses: actions/checkout@v2
 
-      - name: Setup latest deno version
-        uses: denolib/setup-deno@v2
-        with:
-          deno-version: v1.x
+  #     - name: Setup latest deno version
+  #       uses: denolib/setup-deno@v2
+  #       with:
+  #         deno-version: v1.x
 
-      - name: Run Deno test
-        run: deno test -A
+  #     - name: Run Deno test
+  #       run: deno test -A
