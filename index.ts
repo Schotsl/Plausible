@@ -1,4 +1,4 @@
-import { Period, Metrics, Interval } from "./types.ts";
+import { Interval, Metrics, Period } from "./types.ts";
 
 export class PlausibleAPI {
   public url = "https://plausible.hedium.nl";
@@ -85,7 +85,7 @@ export class PlausibleAPI {
 
   /**
    * This function allows you to breakdown your stats by some property. If you are familiar with SQL family databases, this function corresponds to running GROUP BY on a certain property in your stats.
-   * 
+   *
    * Check out the [properties](https://plausible.io/docs/stats-api#properties) section for a reference of all the properties you can use in this query.
    */
 
