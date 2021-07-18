@@ -1,4 +1,13 @@
-import { Interval, Metrics, Period } from "./types.ts";
+// deno-lint-ignore-file no-explicit-any
+
+import {
+  Aggregated,
+  Datapoint,
+  Interval,
+  Metrics,
+  Period,
+  Property,
+} from "./types.ts";
 
 export class PlausibleAPI {
   public url = "https://plausible.hedium.nl";
@@ -11,10 +20,10 @@ export class PlausibleAPI {
     this.site = site;
   }
 
-  private async getAbstract<T>(
+  private async getAbstract(
     path: string,
     params: URLSearchParams = new URLSearchParams(),
-  ): Promise<T> {
+  ): Promise<any> {
     params.append("site_id", this.site);
 
     const endpoint = `${this.url}/${path}?${params}`;
@@ -43,12 +52,12 @@ export class PlausibleAPI {
    * This function aggregates metrics over a certain time period. If you are familiar with the Plausible dashboard, this function corresponds to the top row of stats that include Unique Visitors, Pageviews, Bounce rate and Visit duration. You can retrieve any number and combination of these metrics in one request.
    */
 
-  public getAggregate(
+  public async getAggregate(
     period: Period,
     metrics: Metrics,
     compare?: boolean,
     filters?: string,
-  ): Promise<unknown> {
+  ): Promise<Aggregated> {
     const params = new URLSearchParams();
 
     params.append(`period`, period);
@@ -57,7 +66,14 @@ export class PlausibleAPI {
     if (compare) params.append(`compare`, "previous_period");
     if (filters) params.append("filters", filters);
 
-    return this.getAbstract(`api/v1/stats/aggregate`, params);
+    const response = await this.getAbstract(`api/v1/stats/aggregate`, params);
+
+    if (response.results.visitors) return response.results.visitors;
+    if (response.results.pageviews) return response.results.pageviews;
+    if (response.results.bounce_rate) return response.results.bounce_rate;
+    if (response.results.visit_duration) return response.results.visit_duration;
+
+    throw Error("bruh");
   }
 
   // TODO: Metrics seems to do nothing
@@ -66,12 +82,12 @@ export class PlausibleAPI {
    * This function provides timeseries data over a certain time period. If you are familiar with the Plausible dashboard, this function corresponds to the main visitor graph.
    */
 
-  public getTimeseries(
+  public async getTimeseries(
     period: Period,
     metrics?: Metrics,
     filters?: string,
     interval?: Interval,
-  ): Promise<unknown> {
+  ): Promise<Array<Datapoint>> {
     const params = new URLSearchParams();
 
     params.append(`period`, period);
@@ -80,7 +96,8 @@ export class PlausibleAPI {
     if (filters) params.append(`filters`, filters);
     if (interval) params.append("interval", interval);
 
-    return this.getAbstract(`api/v1/stats/timeseries`, params);
+    const response = await this.getAbstract(`api/v1/stats/timeseries`, params);
+    return response.results;
   }
 
   /**
@@ -91,7 +108,189 @@ export class PlausibleAPI {
 
   public getBreakdown(
     period: Period,
-    property: string,
+    property: "event:name",
+    metrics?: Metrics,
+    filters?: string,
+    limit?: number,
+    page?: number,
+  ): Promise<
+    Array<{
+      name: string;
+      visitors: number;
+    }>
+  >;
+
+  public getBreakdown(
+    period: Period,
+    property: "event:page",
+    metrics?: Metrics,
+    filters?: string,
+    limit?: number,
+    page?: number,
+  ): Promise<
+    Array<{
+      page: string;
+      visitors: number;
+    }>
+  >;
+
+  public getBreakdown(
+    period: Period,
+    property: "visit:source",
+    metrics?: Metrics,
+    filters?: string,
+    limit?: number,
+    page?: number,
+  ): Promise<
+    Array<{
+      source: string;
+      visitors: number;
+    }>
+  >;
+
+  public getBreakdown(
+    period: Period,
+    property: "visit:referrer",
+    metrics?: Metrics,
+    filters?: string,
+    limit?: number,
+    page?: number,
+  ): Promise<
+    Array<{
+      referrer: string;
+      visitors: number;
+    }>
+  >;
+
+  public getBreakdown(
+    period: Period,
+    property: "visit:utm_medium",
+    metrics?: Metrics,
+    filters?: string,
+    limit?: number,
+    page?: number,
+  ): Promise<
+    Array<{
+      utm_medium: string;
+      visitors: number;
+    }>
+  >;
+
+  public getBreakdown(
+    period: Period,
+    property: "visit:utm_source",
+    metrics?: Metrics,
+    filters?: string,
+    limit?: number,
+    page?: number,
+  ): Promise<
+    Array<{
+      utm_source: string;
+      visitors: number;
+    }>
+  >;
+
+  public getBreakdown(
+    period: Period,
+    property: "visit:utm_campaign",
+    metrics?: Metrics,
+    filters?: string,
+    limit?: number,
+    page?: number,
+  ): Promise<
+    Array<{
+      utm_campaign: string;
+      visitors: number;
+    }>
+  >;
+
+  public getBreakdown(
+    period: Period,
+    property: "visit:device",
+    metrics?: Metrics,
+    filters?: string,
+    limit?: number,
+    page?: number,
+  ): Promise<
+    Array<{
+      device: string;
+      visitors: number;
+    }>
+  >;
+
+  public getBreakdown(
+    period: Period,
+    property: "visit:browser",
+    metrics?: Metrics,
+    filters?: string,
+    limit?: number,
+    page?: number,
+  ): Promise<
+    Array<{
+      browser: string;
+      visitors: number;
+    }>
+  >;
+
+  public getBreakdown(
+    period: Period,
+    property: "visit:browser_version",
+    metrics?: Metrics,
+    filters?: string,
+    limit?: number,
+    page?: number,
+  ): Promise<
+    Array<{
+      browser_version: string;
+      visitors: number;
+    }>
+  >;
+
+  public getBreakdown(
+    period: Period,
+    property: "visit:os",
+    metrics?: Metrics,
+    filters?: string,
+    limit?: number,
+    page?: number,
+  ): Promise<
+    Array<{
+      os: string;
+      visitors: number;
+    }>
+  >;
+
+  public getBreakdown(
+    period: Period,
+    property: "visit:os_version",
+    metrics?: Metrics,
+    filters?: string,
+    limit?: number,
+    page?: number,
+  ): Promise<
+    Array<{
+      os_version: string;
+      visitors: number;
+    }>
+  >;
+
+  public getBreakdown(
+    period: Period,
+    property: "visit:country",
+    metrics?: Metrics,
+    filters?: string,
+    limit?: number,
+    page?: number,
+  ): Promise<
+    Array<{
+      country: string;
+      visitors: number;
+    }>
+  >;
+
+  public async getBreakdown(
+    period: Period,
+    property: Property,
     metrics?: Metrics,
     filters?: string,
     limit?: number,
@@ -108,6 +307,7 @@ export class PlausibleAPI {
     if (page) params.append("page", page.toString());
     if (limit) params.append("limit", limit.toString());
 
-    return this.getAbstract(`api/v1/stats/breakdown`, params);
+    const response = await this.getAbstract(`api/v1/stats/breakdown`, params);
+    return response.results;
   }
 }
