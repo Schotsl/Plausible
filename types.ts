@@ -22,12 +22,19 @@ export type Metrics =
   | "bounce_rate"
   | "visit_duration";
 
-export interface Aggregated {
+export type AggregatedReturns = Array<{
   value: number;
   change?: number;
-}
+}>;
 
-export interface Datapoint {
+export type DatapointReturns = Array<{
   date: string;
   visitors: number;
-}
+}>;
+
+type BreakdownReturns<T extends string> = { [key in T]: string } & {
+  visitors: number;
+};
+
+export type BreakdownReturn<T extends Property> = T extends
+  `${infer _}:${infer Key}` ? BreakdownReturns<Key> : never;

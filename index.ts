@@ -1,8 +1,10 @@
 // deno-lint-ignore-file no-explicit-any
 
 import {
-  Aggregated,
-  Datapoint,
+  BreakdownReturn,
+  DatapointReturns,
+  // DatapointReturns,
+  AggregatedReturns,
   Interval,
   Metrics,
   Period,
@@ -46,8 +48,6 @@ export class PlausibleAPI {
     return this.getAbstract(`api/v1/stats/realtime/visitors`);
   }
 
-  // TODO: Allow multiple metrics
-
   /**
    * This function aggregates metrics over a certain time period. If you are familiar with the Plausible dashboard, this function corresponds to the top row of stats that include Unique Visitors, Pageviews, Bounce rate and Visit duration. You can retrieve any number and combination of these metrics in one request.
    */
@@ -57,7 +57,7 @@ export class PlausibleAPI {
     metrics: Metrics,
     compare?: boolean,
     filters?: string,
-  ): Promise<Aggregated> {
+  ): Promise<AggregatedReturns> {
     const params = new URLSearchParams();
 
     params.append(`period`, period);
@@ -72,11 +72,7 @@ export class PlausibleAPI {
     if (response.results.pageviews) return response.results.pageviews;
     if (response.results.bounce_rate) return response.results.bounce_rate;
     if (response.results.visit_duration) return response.results.visit_duration;
-
-    throw Error("bruh");
   }
-
-  // TODO: Metrics seems to do nothing
 
   /**
    * This function provides timeseries data over a certain time period. If you are familiar with the Plausible dashboard, this function corresponds to the main visitor graph.
@@ -87,7 +83,7 @@ export class PlausibleAPI {
     metrics?: Metrics,
     filters?: string,
     interval?: Interval,
-  ): Promise<Array<Datapoint>> {
+  ): Promise<DatapointReturns> {
     const params = new URLSearchParams();
 
     params.append(`period`, period);
@@ -106,196 +102,14 @@ export class PlausibleAPI {
    * Check out the [properties](https://plausible.io/docs/stats-api#properties) section for a reference of all the properties you can use in this query.
    */
 
-  public getBreakdown(
+  public async getBreakdown<Prop extends Property>(
     period: Period,
-    property: "event:name",
+    property: Prop,
     metrics?: Metrics,
     filters?: string,
     limit?: number,
     page?: number,
-  ): Promise<
-    Array<{
-      name: string;
-      visitors: number;
-    }>
-  >;
-
-  public getBreakdown(
-    period: Period,
-    property: "event:page",
-    metrics?: Metrics,
-    filters?: string,
-    limit?: number,
-    page?: number,
-  ): Promise<
-    Array<{
-      page: string;
-      visitors: number;
-    }>
-  >;
-
-  public getBreakdown(
-    period: Period,
-    property: "visit:source",
-    metrics?: Metrics,
-    filters?: string,
-    limit?: number,
-    page?: number,
-  ): Promise<
-    Array<{
-      source: string;
-      visitors: number;
-    }>
-  >;
-
-  public getBreakdown(
-    period: Period,
-    property: "visit:referrer",
-    metrics?: Metrics,
-    filters?: string,
-    limit?: number,
-    page?: number,
-  ): Promise<
-    Array<{
-      referrer: string;
-      visitors: number;
-    }>
-  >;
-
-  public getBreakdown(
-    period: Period,
-    property: "visit:utm_medium",
-    metrics?: Metrics,
-    filters?: string,
-    limit?: number,
-    page?: number,
-  ): Promise<
-    Array<{
-      utm_medium: string;
-      visitors: number;
-    }>
-  >;
-
-  public getBreakdown(
-    period: Period,
-    property: "visit:utm_source",
-    metrics?: Metrics,
-    filters?: string,
-    limit?: number,
-    page?: number,
-  ): Promise<
-    Array<{
-      utm_source: string;
-      visitors: number;
-    }>
-  >;
-
-  public getBreakdown(
-    period: Period,
-    property: "visit:utm_campaign",
-    metrics?: Metrics,
-    filters?: string,
-    limit?: number,
-    page?: number,
-  ): Promise<
-    Array<{
-      utm_campaign: string;
-      visitors: number;
-    }>
-  >;
-
-  public getBreakdown(
-    period: Period,
-    property: "visit:device",
-    metrics?: Metrics,
-    filters?: string,
-    limit?: number,
-    page?: number,
-  ): Promise<
-    Array<{
-      device: string;
-      visitors: number;
-    }>
-  >;
-
-  public getBreakdown(
-    period: Period,
-    property: "visit:browser",
-    metrics?: Metrics,
-    filters?: string,
-    limit?: number,
-    page?: number,
-  ): Promise<
-    Array<{
-      browser: string;
-      visitors: number;
-    }>
-  >;
-
-  public getBreakdown(
-    period: Period,
-    property: "visit:browser_version",
-    metrics?: Metrics,
-    filters?: string,
-    limit?: number,
-    page?: number,
-  ): Promise<
-    Array<{
-      browser_version: string;
-      visitors: number;
-    }>
-  >;
-
-  public getBreakdown(
-    period: Period,
-    property: "visit:os",
-    metrics?: Metrics,
-    filters?: string,
-    limit?: number,
-    page?: number,
-  ): Promise<
-    Array<{
-      os: string;
-      visitors: number;
-    }>
-  >;
-
-  public getBreakdown(
-    period: Period,
-    property: "visit:os_version",
-    metrics?: Metrics,
-    filters?: string,
-    limit?: number,
-    page?: number,
-  ): Promise<
-    Array<{
-      os_version: string;
-      visitors: number;
-    }>
-  >;
-
-  public getBreakdown(
-    period: Period,
-    property: "visit:country",
-    metrics?: Metrics,
-    filters?: string,
-    limit?: number,
-    page?: number,
-  ): Promise<
-    Array<{
-      country: string;
-      visitors: number;
-    }>
-  >;
-
-  public async getBreakdown(
-    period: Period,
-    property: Property,
-    metrics?: Metrics,
-    filters?: string,
-    limit?: number,
-    page?: number,
-  ): Promise<unknown> {
+  ): Promise<BreakdownReturn<Prop>> {
     const params = new URLSearchParams();
 
     params.append(`period`, period);
