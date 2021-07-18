@@ -5,4 +5,6 @@ const plausibleAPI = new PlausibleAPI(
   "uwuifier.com",
 );
 
-console.log((await plausibleAPI.getBreakdown("6mo", "visit:browser")));
+console.log(
+  (await plausibleAPI.getBreakdown("6mo", "visit:browser"))[0].browser,
+);

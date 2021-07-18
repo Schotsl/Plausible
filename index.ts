@@ -1,10 +1,9 @@
 // deno-lint-ignore-file no-explicit-any
 
 import {
-  BreakdownReturn,
-  DatapointReturns,
-  // DatapointReturns,
   AggregatedReturns,
+  BreakdownReturns,
+  DatapointReturns,
   Interval,
   Metrics,
   Period,
@@ -26,8 +25,10 @@ export class PlausibleAPI {
     path: string,
     params: URLSearchParams = new URLSearchParams(),
   ): Promise<any> {
+    // Append the standard site ID to every request
     params.append("site_id", this.site);
 
+    // Construct the endpoint URL and fetch the results
     const endpoint = `${this.url}/${path}?${params}`;
     const response = await fetch(endpoint, {
       method: `GET`,
@@ -37,7 +38,12 @@ export class PlausibleAPI {
       },
     });
 
-    return await response.json();
+    // Throw the error if the API has provided one
+    const parsed = await response.json();
+    if (parsed.error) throw new Error(parsed.error);
+
+    // Otherwise just return the results
+    return parsed;
   }
 
   /**
@@ -71,7 +77,8 @@ export class PlausibleAPI {
     if (response.results.visitors) return response.results.visitors;
     if (response.results.pageviews) return response.results.pageviews;
     if (response.results.bounce_rate) return response.results.bounce_rate;
-    if (response.results.visit_duration) return response.results.visit_duration;
+
+    return response.results.visit_duration;
   }
 
   /**
@@ -109,7 +116,7 @@ export class PlausibleAPI {
     filters?: string,
     limit?: number,
     page?: number,
-  ): Promise<BreakdownReturn<Prop>> {
+  ): Promise<BreakdownReturns<Prop>> {
     const params = new URLSearchParams();
 
     params.append(`period`, period);
