@@ -10,7 +10,7 @@ import {
   Property,
 } from "./types.ts";
 
-export class PlausibleAPI {
+export default class PlausibleAPI {
   public url = "https://plausible.hedium.nl";
 
   private key: string;
