@@ -38,8 +38,8 @@ type Aggregated = {
   change?: number;
 };
 
-export type DatapointReturns = Array<Datapoint>;
-export type AggregatedReturns = Array<Aggregated>;
+export type DatapointReturns = Datapoint[];
+export type AggregatedReturns = Aggregated;
 export type BreakdownReturns<T extends Property> = Array<
   T extends `${infer _}:${infer Key}` ? Breakdown<Key> : never
 >;
