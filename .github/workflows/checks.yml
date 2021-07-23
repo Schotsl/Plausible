@@ -24,6 +24,7 @@ jobs:
 
       - name: Run Deno lint
         run: deno lint **/*.ts
+
   # test:
   #   name: Test
   #   runs-on: ubuntu-latest
