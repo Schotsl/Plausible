@@ -24,22 +24,20 @@ export type Metrics =
 
 // I have no clue how the Breakdown / BreakdownReturns works so shoutout to @iDavidB
 
-type Breakdown<T extends string> = { [key in T]: string } & {
-  visitors: number;
-};
-
-type Datapoint = {
+export type Datapoints = {
   date: string;
   visitors: number;
-};
+}[];
 
-type Aggregated = {
+export type Aggregated = {
   value: number;
   change?: number;
 };
 
-export type DatapointReturns = Datapoint[];
-export type AggregatedReturns = Aggregated;
-export type BreakdownReturns<T extends Property> = Array<
+type Breakdown<T extends string> = { [key in T]: string } & {
+  visitors: number;
+};
+
+export type Breakdowns<T extends Property> = Array<
   T extends `${infer _}:${infer Key}` ? Breakdown<Key> : never
 >;

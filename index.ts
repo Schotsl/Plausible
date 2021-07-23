@@ -1,9 +1,9 @@
 // deno-lint-ignore-file no-explicit-any
 
 import {
-  AggregatedReturns,
-  BreakdownReturns,
-  DatapointReturns,
+  Aggregated,
+  Breakdowns,
+  Datapoints,
   Interval,
   Metrics,
   Period,
@@ -63,7 +63,7 @@ export default class PlausibleAPI {
     metrics: Metrics,
     compare?: boolean,
     filters?: string,
-  ): Promise<AggregatedReturns> {
+  ): Promise<Aggregated> {
     const params = new URLSearchParams();
 
     params.append(`period`, period);
@@ -90,7 +90,7 @@ export default class PlausibleAPI {
     metrics?: Metrics,
     filters?: string,
     interval?: Interval,
-  ): Promise<DatapointReturns> {
+  ): Promise<Datapoints> {
     const params = new URLSearchParams();
 
     params.append(`period`, period);
@@ -116,7 +116,7 @@ export default class PlausibleAPI {
     filters?: string,
     limit?: number,
     page?: number,
-  ): Promise<BreakdownReturns<Prop>> {
+  ): Promise<Breakdowns<Prop>> {
     const params = new URLSearchParams();
 
     params.append(`period`, period);
