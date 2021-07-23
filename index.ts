@@ -4,21 +4,24 @@ import {
   Aggregated,
   Breakdowns,
   Datapoints,
+  Property,
   Interval,
   Metrics,
   Period,
-  Property,
 } from "./types.ts";
 
 export default class PlausibleAPI {
-  public url = "https://plausible.hedium.nl";
+  public url = "https://plausible.com";
 
   private key: string;
   private site: string;
 
-  constructor(key: string, site: string) {
+  constructor(key: string, site: string, url: string) {
     this.key = key;
     this.site = site;
+    
+    // If the user has a self-hosted Plausible instance
+    if (url) this.url = url;
   }
 
   private async getAbstract(
