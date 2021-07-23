@@ -20,11 +20,10 @@ jobs:
           deno-version: v1.x
 
       - name: Run Deno fmt
-        run: deno fmt --check
+        run: deno fmt --check **/*.ts
 
       - name: Run Deno lint
-        run: deno lint
-
+        run: deno lint **/*.ts
   # test:
   #   name: Test
   #   runs-on: ubuntu-latest
