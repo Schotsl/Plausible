@@ -4,10 +4,10 @@ import {
   Aggregated,
   Breakdowns,
   Datapoints,
-  Property,
   Interval,
   Metrics,
   Period,
+  Property,
 } from "./types.ts";
 
 export default class PlausibleAPI {
@@ -16,10 +16,10 @@ export default class PlausibleAPI {
   private key: string;
   private site: string;
 
-  constructor(key: string, site: string, url: string) {
+  constructor(key: string, site: string, url?: string | null) {
     this.key = key;
     this.site = site;
-    
+
     // If the user has a self-hosted Plausible instance
     if (url) this.url = url;
   }
@@ -64,8 +64,8 @@ export default class PlausibleAPI {
   public async getAggregate(
     period: Period,
     metrics: Metrics,
-    compare?: boolean,
-    filters?: string,
+    compare?: boolean | null,
+    filters?: string | null,
   ): Promise<Aggregated> {
     const params = new URLSearchParams();
 
@@ -90,9 +90,9 @@ export default class PlausibleAPI {
 
   public async getTimeseries(
     period: Period,
-    metrics?: Metrics,
-    filters?: string,
-    interval?: Interval,
+    metrics?: Metrics | null,
+    filters?: string | null,
+    interval?: Interval | null,
   ): Promise<Datapoints> {
     const params = new URLSearchParams();
 
@@ -106,6 +106,8 @@ export default class PlausibleAPI {
     return response.results;
   }
 
+  // TODO: Fix return type to include metrics
+
   /**
    * This function allows you to breakdown your stats by some property. If you are familiar with SQL family databases, this function corresponds to running GROUP BY on a certain property in your stats.
    *
@@ -115,10 +117,10 @@ export default class PlausibleAPI {
   public async getBreakdown<Prop extends Property>(
     period: Period,
     property: Prop,
-    metrics?: Metrics,
-    filters?: string,
-    limit?: number,
-    page?: number,
+    metrics?: Metrics | null,
+    filters?: string | null,
+    limit?: number | null,
+    page?: number | null,
   ): Promise<Breakdowns<Prop>> {
     const params = new URLSearchParams();
 
