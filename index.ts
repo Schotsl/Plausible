@@ -10,6 +10,11 @@ import {
   Property,
 } from "./types.ts";
 
+/**
+ * @param {string} key - API key.
+ * @param {string} site - Domain of your site on Plausible.
+ * @param {string} [url] - Self-hosted Plausible URL.
+ */
 export default class PlausibleAPI {
   public url = "https://plausible.com";
 
@@ -50,9 +55,9 @@ export default class PlausibleAPI {
   }
 
   /**
-   * This function returns the number of current visitors on your site. A current visitor is defined as a visitor who triggered a pageview on your site in the last 5 minutes.
-   */
-
+  * This function returns the number of current visitors on your site. A current visitor is defined as a visitor who triggered a pageview on your site in the last 5 minutes.
+  * @returns {number} Number of current visitors.
+  */
   public getRealtime(): Promise<number> {
     return this.getAbstract(`api/v1/stats/realtime/visitors`);
   }
