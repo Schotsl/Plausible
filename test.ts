@@ -1,7 +1,7 @@
 import PlausibleAPI from "./index.ts";
 
 const plausibleAPI = new PlausibleAPI(
-  "nBJZCb0WGNmJ49tI3aEfEUsdu_vci3ZRsN1l4V7VkF2mkBW-p_KM-4W1kHPqAJBi",
+  "IMuRtn-0O29u7Yhza3wmbaT3jfxX20l29Pg1J52R6vK1CgXHiYPaIJobb1SneR_4",
   "uwuifier.com",
   "https://plausible.hedium.nl",
 );
