@@ -55,8 +55,8 @@ export default class PlausibleAPI {
   }
 
   /**
-  * This function returns the number of current visitors on your site. A current visitor is defined as a visitor who triggered a pageview on your site in the last 5 minutes.
-  */
+   * This function returns the number of current visitors on your site. A current visitor is defined as a visitor who triggered a pageview on your site in the last 5 minutes.
+   */
   public getRealtime(): Promise<number> {
     return this.getAbstract(`api/v1/stats/realtime/visitors`);
   }
