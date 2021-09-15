@@ -16,8 +16,8 @@ import {
  * @param url Self-hosted Plausible URL.
  */
 export default class PlausibleAPI {
-  public url = "https://plausible.com";
-
+  private url = "https://plausible.com";
+  
   private key: string;
   private site: string;
 
