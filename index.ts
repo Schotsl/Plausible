@@ -65,7 +65,6 @@ export default class PlausibleAPI {
   /**
    * This function aggregates metrics over a certain time period. If you are familiar with the Plausible dashboard, this function corresponds to the top row of stats that include Unique Visitors, Pageviews, Bounce rate and Visit duration. You can retrieve any number and combination of these metrics in one request.
    */
-
   public async getAggregate(
     period: Period,
     metrics: Metrics,
@@ -92,7 +91,6 @@ export default class PlausibleAPI {
   /**
    * This function provides timeseries data over a certain time period. If you are familiar with the Plausible dashboard, this function corresponds to the main visitor graph.
    */
-
   public async getTimeseries(
     period: Period,
     metrics?: Metrics | null,
@@ -118,7 +116,6 @@ export default class PlausibleAPI {
    *
    * Check out the [properties](https://plausible.io/docs/stats-api#properties) section for a reference of all the properties you can use in this query.
    */
-
   public async getBreakdown<Prop extends Property>(
     period: Period,
     property: Prop,
