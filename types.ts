@@ -34,10 +34,14 @@ export type Aggregated = {
   change?: number;
 };
 
-type Breakdown<T extends string> = { [key in T]: string } & {
-  visitors: number;
-};
+type Breakdown<T extends string, Metric extends Metrics> =
+  & {
+    [key in T]: string;
+  }
+  & {
+    [key in Metric]: number;
+  };
 
-export type Breakdowns<T extends Property> = Array<
-  T extends `${infer _}:${infer Key}` ? Breakdown<Key> : never
+export type Breakdowns<T extends Property, Metric extends Metrics> = Array<
+  T extends `${infer _}:${infer Key}` ? Breakdown<Key, Metric> : never
 >;

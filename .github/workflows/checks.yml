@@ -20,10 +20,10 @@ jobs:
           deno-version: v1.x
 
       - name: Run Deno fmt
-        run: deno fmt --check **/*.ts
+        run: deno fmt --check *.ts
 
       - name: Run Deno lint
-        run: deno lint **/*.ts
+        run: deno lint *.ts
 
   test:
     name: Test
@@ -40,3 +40,7 @@ jobs:
 
       - name: Run Deno test
         run: deno test -A
+        env:
+          PLAUSIBLE_TOKEN: ${{ secrets.PLAUSIBLE }}
+          PLAUSIBLE_SITE: uwuifier.com
+          PLAUSIBLE_URL: https://plausible.hedium.nl

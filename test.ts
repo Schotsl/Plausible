@@ -1,9 +1,17 @@
 import PlausibleAPI from "./index.ts";
 
+import { initializeEnv } from "./helper.ts";
+
+initializeEnv([
+  "PLAUSIBLE_TOKEN",
+  "PLAUSIBLE_SITE",
+  "PLAUSIBLE_URL",
+]);
+
 const plausibleAPI = new PlausibleAPI(
-  "IMuRtn-0O29u7Yhza3wmbaT3jfxX20l29Pg1J52R6vK1CgXHiYPaIJobb1SneR_4",
-  "uwuifier.com",
-  "https://plausible.hedium.nl",
+  Deno.env.get("PLAUSIBLE_TOKEN")!,
+  Deno.env.get("PLAUSIBLE_SITE")!,
+  Deno.env.get("PLAUSIBLE_URL")!,
 );
 
 // Do the bare minimum and check if every function runs without crashing
@@ -21,11 +29,5 @@ Deno.test("get pageviews timeseries", async () => {
 });
 
 Deno.test("get pageviews breakdown", async () => {
-  console.log('\n');
-
-  console.log((await plausibleAPI.getBreakdown("6mo", "visit:country", "pageviews"))[0]);
-  console.log((await plausibleAPI.getBreakdown("6mo", "visit:browser", "pageviews"))[0]);
-
-  console.log((await plausibleAPI.getBreakdown("6mo", "visit:browser", "pageviews"))[0]);
-  console.log((await plausibleAPI.getBreakdown("6mo", "visit:browser", "bounce_rate"))[0]);
+  await plausibleAPI.getBreakdown("6mo", "visit:country");
 });

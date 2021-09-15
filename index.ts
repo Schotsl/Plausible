@@ -17,7 +17,7 @@ import {
  */
 export default class PlausibleAPI {
   private url = "https://plausible.com";
-  
+
   private key: string;
   private site: string;
 
@@ -56,7 +56,6 @@ export default class PlausibleAPI {
 
   /**
   * This function returns the number of current visitors on your site. A current visitor is defined as a visitor who triggered a pageview on your site in the last 5 minutes.
-  * @returns {number} Number of current visitors.
   */
   public getRealtime(): Promise<number> {
     return this.getAbstract(`api/v1/stats/realtime/visitors`);
@@ -109,21 +108,19 @@ export default class PlausibleAPI {
     return response.results;
   }
 
-  // TODO: Fix return type to include metrics
-
   /**
    * This function allows you to breakdown your stats by some property. If you are familiar with SQL family databases, this function corresponds to running GROUP BY on a certain property in your stats.
    *
    * Check out the [properties](https://plausible.io/docs/stats-api#properties) section for a reference of all the properties you can use in this query.
    */
-  public async getBreakdown<Prop extends Property>(
+  public async getBreakdown<Prop extends Property, Metric extends Metrics>(
     period: Period,
     property: Prop,
-    metrics?: Metrics | null,
+    metrics?: Metric | null,
     filters?: string | null,
     limit?: number | null,
     page?: number | null,
-  ): Promise<Breakdowns<Prop>> {
+  ): Promise<Breakdowns<Prop, Metric>> {
     const params = new URLSearchParams();
 
     params.append(`period`, period);
