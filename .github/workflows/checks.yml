@@ -41,6 +41,6 @@ jobs:
       - name: Run Deno test
         run: deno test -A
         env:
-          PLAUSIBLE_TOKEN: ${{ secrets.PLAUSIBLE }}
+          PLAUSIBLE_TOKEN: ${{ secrets.PLAUSIBLE_TOKEN }}
           PLAUSIBLE_SITE: uwuifier.com
           PLAUSIBLE_URL: https://plausible.hedium.nl
