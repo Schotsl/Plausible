@@ -21,5 +21,11 @@ Deno.test("get pageviews timeseries", async () => {
 });
 
 Deno.test("get pageviews breakdown", async () => {
-  await plausibleAPI.getBreakdown("6mo", "visit:browser", "pageviews");
+  console.log('\n');
+
+  console.log((await plausibleAPI.getBreakdown("6mo", "visit:country", "pageviews"))[0]);
+  console.log((await plausibleAPI.getBreakdown("6mo", "visit:browser", "pageviews"))[0]);
+
+  console.log((await plausibleAPI.getBreakdown("6mo", "visit:browser", "pageviews"))[0]);
+  console.log((await plausibleAPI.getBreakdown("6mo", "visit:browser", "bounce_rate"))[0]);
 });
