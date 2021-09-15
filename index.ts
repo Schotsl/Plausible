@@ -7,7 +7,7 @@ import {
   Interval,
   Metrics,
   Period,
-  Property,
+  Properties,
 } from "./types.ts";
 
 /**
@@ -61,19 +61,21 @@ export default class PlausibleAPI {
     return this.getAbstract(`api/v1/stats/realtime/visitors`);
   }
 
+  // TODO: Add compare property if compare is true
+
   /**
    * This function aggregates metrics over a certain time period. If you are familiar with the Plausible dashboard, this function corresponds to the top row of stats that include Unique Visitors, Pageviews, Bounce rate and Visit duration. You can retrieve any number and combination of these metrics in one request.
    */
   public async getAggregate(
     period: Period,
-    metrics: Metrics,
+    metric: Metrics,
     compare?: boolean | null,
     filters?: string | null,
   ): Promise<Aggregated> {
     const params = new URLSearchParams();
 
     params.append(`period`, period);
-    params.append(`metrics`, metrics);
+    params.append(`metrics`, metric);
 
     if (compare) params.append(`compare`, "previous_period");
     if (filters) params.append("filters", filters);
@@ -90,17 +92,17 @@ export default class PlausibleAPI {
   /**
    * This function provides timeseries data over a certain time period. If you are familiar with the Plausible dashboard, this function corresponds to the main visitor graph.
    */
-  public async getTimeseries(
+  public async getTimeseries<Metric extends Metrics>(
     period: Period,
-    metrics?: Metrics | null,
+    metric: Metric,
     filters?: string | null,
     interval?: Interval | null,
-  ): Promise<Datapoints> {
+  ): Promise<Datapoints<Metric>> {
     const params = new URLSearchParams();
 
     params.append(`period`, period);
 
-    if (metrics) params.append(`metrics`, metrics);
+    if (metric) params.append(`metrics`, metric);
     if (filters) params.append(`filters`, filters);
     if (interval) params.append("interval", interval);
 
@@ -113,21 +115,24 @@ export default class PlausibleAPI {
    *
    * Check out the [properties](https://plausible.io/docs/stats-api#properties) section for a reference of all the properties you can use in this query.
    */
-  public async getBreakdown<Prop extends Property, Metric extends Metrics>(
+  public async getBreakdown<
+    Property extends Properties,
+    Metric extends Metrics,
+  >(
     period: Period,
-    property: Prop,
-    metrics?: Metric | null,
-    filters?: string | null,
+    metric: Metric,
+    property: Property,
+    filter?: string | null,
     limit?: number | null,
     page?: number | null,
-  ): Promise<Breakdowns<Prop, Metric>> {
+  ): Promise<Breakdowns<Property, Metric>> {
     const params = new URLSearchParams();
 
     params.append(`period`, period);
+    params.append(`metrics`, metric);
     params.append(`property`, property);
 
-    if (metrics) params.append(`metrics`, metrics);
-    if (filters) params.append(`filters`, filters);
+    if (filter) params.append(`filters`, filter);
 
     if (page) params.append("page", page.toString());
     if (limit) params.append("limit", limit.toString());

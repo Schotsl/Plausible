@@ -1,7 +1,7 @@
 export type Period = "12mo" | "6mo" | "month" | "30d" | "7d" | "day";
 export type Interval = "date" | "month";
 
-export type Property =
+export type Properties =
   | "event:name"
   | "event:page"
   | "visit:source"
@@ -24,15 +24,29 @@ export type Metrics =
 
 // I have no clue how the Breakdown / BreakdownReturns works so shoutout to @iDavidB
 
-export type Datapoints = {
-  date: string;
-  visitors: number;
-}[];
+// export type Datapoints = {
+//   date: string;
+//   visitors: number;
+// }[];
 
 export type Aggregated = {
   value: number;
   change?: number;
 };
+
+// TODO: Simplify this type
+
+type Datapoint<T extends string> =
+  & {
+    [key in T]: string;
+  }
+  & {
+    date: string;
+  };
+
+export type Datapoints<T extends Metrics> = Array<
+  T extends `${infer Key}` ? Datapoint<Key> : never
+>;
 
 type Breakdown<T extends string, Metric extends Metrics> =
   & {
@@ -42,6 +56,6 @@ type Breakdown<T extends string, Metric extends Metrics> =
     [key in Metric]: number;
   };
 
-export type Breakdowns<T extends Property, Metric extends Metrics> = Array<
+export type Breakdowns<T extends Properties, Metric extends Metrics> = Array<
   T extends `${infer _}:${infer Key}` ? Breakdown<Key, Metric> : never
 >;

@@ -21,13 +21,15 @@ Deno.test("get realtime pageviews", async () => {
 });
 
 Deno.test("get aggregated pageviews", async () => {
-  await plausibleAPI.getAggregate("6mo", "pageviews");
+  await plausibleAPI.getAggregate("6mo", "bounce_rate");
 });
 
 Deno.test("get pageviews timeseries", async () => {
-  await plausibleAPI.getTimeseries("6mo", "pageviews");
+  await plausibleAPI.getTimeseries("6mo", "bounce_rate");
 });
 
 Deno.test("get pageviews breakdown", async () => {
-  await plausibleAPI.getBreakdown("6mo", "visit:country");
+  await plausibleAPI.getBreakdown("6mo", "bounce_rate", "visit:os_version");
 });
+
+// TODO: Add return type validation
