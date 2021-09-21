@@ -31,5 +31,3 @@ Deno.test("get pageviews timeseries", async () => {
 Deno.test("get pageviews breakdown", async () => {
   await plausibleAPI.getBreakdown("6mo", "bounce_rate", "visit:os_version");
 });
-
-// TODO: Add return type validation
