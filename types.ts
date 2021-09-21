@@ -29,10 +29,12 @@ export type Metrics =
 //   visitors: number;
 // }[];
 
-export type Aggregated = {
-  value: number;
-  change?: number;
-};
+export type Aggregated<WithChange extends boolean> = WithChange extends true
+  ? {
+      value: number;
+      change: number;
+    }
+  : { value: number };
 
 // TODO: Simplify this type
 
