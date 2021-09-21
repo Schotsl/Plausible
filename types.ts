@@ -22,21 +22,11 @@ export type Metrics =
   | "bounce_rate"
   | "visit_duration";
 
-// I have no clue how the Breakdown / BreakdownReturns works so shoutout to @iDavidB
-
-// export type Datapoints = {
-//   date: string;
-//   visitors: number;
-// }[];
-
-export type Aggregated<WithChange extends boolean> = WithChange extends true
-  ? {
-      value: number;
-      change: number;
-    }
+export type Aggregated<Compare extends boolean> = Compare extends true ? {
+  value: number;
+  change: number;
+}
   : { value: number };
-
-// TODO: Simplify this type
 
 type Datapoint<T extends string> =
   & {
@@ -46,10 +36,6 @@ type Datapoint<T extends string> =
     date: string;
   };
 
-export type Datapoints<T extends Metrics> = Array<
-  T extends `${infer Key}` ? Datapoint<Key> : never
->;
-
 type Breakdown<T extends string, Metric extends Metrics> =
   & {
     [key in T]: string;
@@ -57,6 +43,10 @@ type Breakdown<T extends string, Metric extends Metrics> =
   & {
     [key in Metric]: number;
   };
+
+export type Datapoints<T extends Metrics> = Array<
+  T extends `${infer Key}` ? Datapoint<Key> : never
+>;
 
 export type Breakdowns<T extends Properties, Metric extends Metrics> = Array<
   T extends `${infer _}:${infer Key}` ? Breakdown<Key, Metric> : never

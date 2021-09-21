@@ -61,16 +61,14 @@ export default class PlausibleAPI {
     return this.getAbstract(`api/v1/stats/realtime/visitors`);
   }
 
-  // TODO: Add compare property if compare is true
-
   /**
    * This function aggregates metrics over a certain time period. If you are familiar with the Plausible dashboard, this function corresponds to the top row of stats that include Unique Visitors, Pageviews, Bounce rate and Visit duration. You can retrieve any number and combination of these metrics in one request.
    */
-   public async getAggregate<Compare extends boolean>(
+  public async getAggregate<Compare extends boolean>(
     period: Period,
     metric: Metrics,
     compare?: Compare | null,
-    filters?: string | null
+    filters?: string | null,
   ): Promise<Aggregated<Compare>> {
     const params = new URLSearchParams();
 
