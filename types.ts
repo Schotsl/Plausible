@@ -34,7 +34,8 @@ export type Datapoints<Metric extends string> = Array<
   }
   & {
     date: string;
-  }>;
+  }
+>;
 
 type Breakdown<T extends string, Metric extends Metrics> =
   & {
