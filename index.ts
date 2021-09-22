@@ -10,11 +10,6 @@ import {
   Properties,
 } from "./types.ts";
 
-/**
- * @param key API key.
- * @param site Domain of your site on Plausible.
- * @param url Self-hosted Plausible URL.
- */
 export default class PlausibleAPI {
   private url = "https://plausible.com";
 
