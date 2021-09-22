@@ -22,7 +22,7 @@ export default class PlausibleAPI {
 
     if (url) {
       // Remove the / if it has been accidentally provided
-      if (url.charAt(url.length) === '/') url = url.slice(0, -1);
+      if (url.charAt(url.length) === "/") url = url.slice(0, -1);
       this.url = url;
     }
   }
