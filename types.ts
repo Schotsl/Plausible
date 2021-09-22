@@ -28,9 +28,9 @@ export type Aggregated<Compare extends boolean> = Compare extends true ? {
 }
   : { value: number };
 
-type Datapoint<T extends string> =
+type Datapoint<Metric extends string> =
   & {
-    [key in T]: string;
+    [key in Metric]: string;
   }
   & {
     date: string;
