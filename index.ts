@@ -25,8 +25,11 @@ export default class PlausibleAPI {
     this.key = key;
     this.site = site;
 
-    // If the user has a self-hosted Plausible instance
-    if (url) this.url = url;
+    if (url) {
+      // Remove the / if it has been accidentally provided
+      if (url.charAt(url.length) === '/') url = url.slice(0, -1);
+      this.url = url;
+    }
   }
 
   private async getAbstract(
