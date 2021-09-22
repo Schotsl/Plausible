@@ -28,13 +28,13 @@ export type Aggregated<Compare extends boolean> = Compare extends true ? {
 }
   : { value: number };
 
-type Datapoint<Metric extends string> =
+export type Datapoints<Metric extends string> = Array<
   & {
     [key in Metric]: string;
   }
   & {
     date: string;
-  };
+  }>;
 
 type Breakdown<T extends string, Metric extends Metrics> =
   & {
@@ -43,10 +43,6 @@ type Breakdown<T extends string, Metric extends Metrics> =
   & {
     [key in Metric]: number;
   };
-
-export type Datapoints<T extends Metrics> = Array<
-  T extends `${infer Key}` ? Datapoint<Key> : never
->;
 
 export type Breakdowns<T extends Properties, Metric extends Metrics> = Array<
   T extends `${infer _}:${infer Key}` ? Breakdown<Key, Metric> : never
