@@ -23,9 +23,9 @@ export type Metrics =
   | "visit_duration";
 
 export type Aggregated<Compare extends boolean> = Compare extends true ? {
-  value: number;
-  change: number;
-}
+    value: number;
+    change: number;
+  }
   : { value: number };
 
 export type Datapoints<Metric extends string> = Array<
