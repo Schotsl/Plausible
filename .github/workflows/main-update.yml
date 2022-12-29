@@ -1,0 +1,39 @@
+name: Main update
+
+on:
+  schedule:
+    - cron: "00 00 * * *"
+
+jobs:
+  update:
+    name: Updates
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Setup latest Deno version
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Update dependencies
+        run: deno run -A https://deno.land/x/udd/main.ts *.ts
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v4
+        id: pr
+        with:
+          commit-message: ⬆️ Update dependencies
+          delete-branch: true
+          branch: updates
+          author: GitHub <noreply@github.com>
+          title: ⬆️ Update dependencies
+          body: Dependencies updated by [udd](https://github.com/hayd/deno-udd).
+    
+      - name: Retrieve commit SHA
+        run: echo "::set-output name=sha::$(git rev-parse HEAD)"
+        id: commit

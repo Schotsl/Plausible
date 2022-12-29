@@ -1,4 +1,4 @@
-name: Checks
+name: Main push
 
 on:
   push:
@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup latest Deno version
-        uses: denolib/setup-deno@v2
+        uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
 
@@ -39,8 +39,9 @@ jobs:
           deno-version: v1.x
 
       - name: Run Deno test
-        run: deno test -A
+        run: deno test --allow-env=MAILGUN_TO,MAILGUN_KEY,MAILGUN_DOMAIN,MAILGUN_REGION,DENO_DEPLOYMENT_ID --allow-net=api.mailgun.net,api.eu.mailgun.net --allow-read=.env,.env.defaults
         env:
-          PLAUSIBLE_TOKEN: ${{ secrets.PLAUSIBLE_TOKEN }}
-          PLAUSIBLE_SITE: uwuifier.com
-          PLAUSIBLE_URL: https://plausible.hedium.nl
+          MAILGUN_TO: ${{ secrets.MAILGUN_TO }}
+          MAILGUN_KEY: ${{ secrets.MAILGUN_KEY }}
+          MAILGUN_REGION: ${{ secrets.MAILGUN_REGION }}
+          MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
