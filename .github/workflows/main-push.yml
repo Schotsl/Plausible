@@ -39,9 +39,8 @@ jobs:
           deno-version: v1.x
 
       - name: Run Deno test
-        run: deno test --allow-env=MAILGUN_TO,MAILGUN_KEY,MAILGUN_DOMAIN,MAILGUN_REGION,DENO_DEPLOYMENT_ID --allow-net=api.mailgun.net,api.eu.mailgun.net --allow-read=.env,.env.defaults
+        run: deno test --allow-env=PLAUSIBLE_URL,PLAUSIBLE_SITE,PLAUSIBLE_TOKEN --allow-net=plausible.hedium.nl --allow-read=.env,.env.defaults
         env:
-          MAILGUN_TO: ${{ secrets.MAILGUN_TO }}
-          MAILGUN_KEY: ${{ secrets.MAILGUN_KEY }}
-          MAILGUN_REGION: ${{ secrets.MAILGUN_REGION }}
-          MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+          PLAUSIBLE_URL: ${{ secrets.PLAUSIBLE_URL }}
+          PLAUSIBLE_SITE: ${{ secrets.PLAUSIBLE_SITE }}
+          PLAUSIBLE_TOKEN: ${{ secrets.PLAUSIBLE_TOKEN }}
