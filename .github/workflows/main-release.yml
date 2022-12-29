@@ -57,11 +57,15 @@ jobs:
       - name: Setup Node.js 16
         uses: actions/setup-node@v2
         with:
-          node-version: '16.x'
+          node-version: 'current'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Building package
-        run: deno run --allow-run=npm --allow-net=deno.land --allow-env=HOME,DENO_AUTH_TOKENS,DENO_DIR,XDG_CACHE_HOME --allow-read --allow-write build.ts
+        run: deno run --allow-run=npm --allow-net=deno.land,plausible.hedium.nl --allow-env=PLAUSIBLE_URL,PLAUSIBLE_SITE,PLAUSIBLE_TOKEN,HOME,DENO_AUTH_TOKENS,DENO_DIR,XDG_CACHE_HOME --allow-read --allow-write build.ts
+        env:
+          PLAUSIBLE_URL: ${{ secrets.PLAUSIBLE_URL }}
+          PLAUSIBLE_SITE: ${{ secrets.PLAUSIBLE_SITE }}
+          PLAUSIBLE_TOKEN: ${{ secrets.PLAUSIBLE_TOKEN }}
 
       - name: Publishing to NPM
         run: cd dist && npm publish

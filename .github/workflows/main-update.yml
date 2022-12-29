@@ -23,6 +23,13 @@ jobs:
       - name: Update dependencies
         run: deno run -A https://deno.land/x/udd/main.ts *.ts
 
+      - name: Run Deno test
+        run: deno test --allow-env=PLAUSIBLE_URL,PLAUSIBLE_SITE,PLAUSIBLE_TOKEN --allow-net=plausible.hedium.nl --allow-read=.env,.env.defaults
+        env:
+          PLAUSIBLE_URL: ${{ secrets.PLAUSIBLE_URL }}
+          PLAUSIBLE_SITE: ${{ secrets.PLAUSIBLE_SITE }}
+          PLAUSIBLE_TOKEN: ${{ secrets.PLAUSIBLE_TOKEN }}
+
       - name: Create pull request
         uses: peter-evans/create-pull-request@v4
         id: pr
