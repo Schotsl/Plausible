@@ -54,13 +54,15 @@ console.log(realtime);
 
 ## API
 
+### Plausible
+
 ```ts
 new Plausible(key: string, site: string, url?: string | null)
 ```
 
 Creates a new `Plausible` instance.
 
-Parameters:
+#### Parameters:
 
 - `key`: Your Plausible Analytics API key.
 - `site`: The ID of the site you want to retrieve data for.
