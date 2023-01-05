@@ -152,7 +152,7 @@ visitor graph.
   and `12mo`, otherwise falls back to `date`. Possible values are:
   - `"date"`
   - `"month"`
-    
+
 ### getBreakdown
 
 ```ts
