@@ -54,7 +54,7 @@ jobs:
         with:
           deno-version: v1.x
 
-      - name: Setup Node.js 16
+      - name: Setup latest Node.js version
         uses: actions/setup-node@v2
         with:
           node-version: 'current'

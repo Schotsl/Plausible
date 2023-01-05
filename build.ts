@@ -1,22 +1,29 @@
-import { build } from "https://deno.land/x/dnt@0.32.1/mod.ts";
+import { build, emptyDir } from "https://deno.land/x/dnt/mod.ts";
+
+await emptyDir(".npm");
 
 await build({
+  entryPoints: ["./index.ts"],
+  outDir: ".npm",
   shims: {
     deno: true,
+    undici: true,
   },
   package: {
-    name: "plausible",
-    author: "Sjors van Holst",
+    name: "Plausible",
+    bugs: {
+      url: "https://github.com/Schotsl/Plausible/issues",
+    },
     license: "MIT",
-    version: "1.0.0",
-    homepage: "https://github.com/Schotsl/Plausible",
-    repository: "git://github.com/Schotsl/Plausible.git",
+    version: Deno.args[0],
     description:
-      "A simple Deno and Node wrapper for the recently released Plausible API",
+      "A zero-dependency, TypeScript library for interacting with the Plausible Analytics API, written in Deno!",
+    repository: {
+      type: "git",
+      url: "git+https://github.com/Schotsl/Plausible",
+    },
   },
-  outDir: "./dist",
-  entryPoints: ["./index.ts"],
 });
 
-Deno.copyFileSync("README.md", "dist/README.md");
-Deno.copyFileSync("LICENSE.md", "dist/LICENSE.md");
+Deno.copyFileSync("LICENSE", ".npm/LICENSE");
+Deno.copyFileSync("README.md", ".npm/README.md");

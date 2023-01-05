@@ -45,7 +45,7 @@ export default class Plausible {
     });
 
     // Throw the error if the API has provided one
-    const parsed = await response.json();
+    const parsed = await response.json() as any;
     if (parsed.error) throw new Error(parsed.error);
 
     // Otherwise just return the results
