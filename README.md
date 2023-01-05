@@ -13,7 +13,7 @@ A zero-dependency, TypeScript library for interacting with the Plausible Analyti
 To use the library in Deno, import the module at https://deno.land/x/plausible@v1.0.0.
 
 ```ts
-import PlausibleAPI from "https://deno.land/x/plausible@v1.0.0";
+import Plausible from "https://deno.land/x/plausible@v1.0.0";
 ```
 
 ### Node
@@ -27,20 +27,20 @@ npm install --save plausible
 Then, import the library in your code:
 
 ```ts
-import PlausibleAPI from "plausible";
+import Plausible from "plausible";
 ```
 
 ## Quickstart
 
-Here's an example of how you can use the PlausibleAPI class to retrieve the number of current visitors on your site:
+Here's an example of how you can use the Plausible class to retrieve the number of current visitors on your site:
 
 ```ts
-import PlausibleAPI from "https://deno.land/x/plausible@v1.0.0";
+import Plausible from "https://deno.land/x/plausible@v1.0.0";
 
 const key = "your-api-key";
 const site = "your-site-id";
 
-const plausible = new PlausibleAPI(key, site);
+const plausible = new Plausible(key, site);
 const realtime = await plausible.getRealtime();
 
 console.log(realtime);
@@ -48,9 +48,9 @@ console.log(realtime);
 
 ## API
 ```ts
-new PlausibleAPI(key: string, site: string, url?: string | null)
+new Plausible(key: string, site: string, url?: string | null)
 ```
-Creates a new `PlausibleAPI` instance.
+Creates a new `Plausible` instance.
 
 Parameters:
 

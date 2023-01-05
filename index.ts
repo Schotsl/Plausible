@@ -10,7 +10,7 @@ import {
   Properties,
 } from "./types.ts";
 
-export default class PlausibleAPI {
+export default class Plausible {
   private url = "https://plausible.com";
 
   private key: string;
@@ -137,3 +137,4 @@ export default class PlausibleAPI {
     return response.results;
   }
 }
+```
