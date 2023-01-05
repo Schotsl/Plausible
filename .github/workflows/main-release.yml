@@ -1,4 +1,4 @@
-name: Release
+name: Main release
 
 on:
   release:
@@ -68,6 +68,6 @@ jobs:
           PLAUSIBLE_TOKEN: ${{ secrets.PLAUSIBLE_TOKEN }}
 
       - name: Publishing to NPM
-        run: cd dist && npm publish
+        run: cd npm && npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
