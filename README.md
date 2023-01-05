@@ -1,5 +1,5 @@
-<a href="https://uwuifier.com">
-    <img src="plausible.svg" alt="Plausible logo" align="right" height="60" width="60" />
+<a href="https://github.com/Schotsl/Plausible">
+  <img align="center" src="plausible.svg" alt="Schotsl/Plausible logo" height="60" width="60" />
 </a>
 
 # Plausible
