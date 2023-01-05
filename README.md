@@ -1,6 +1,8 @@
-<a href="https://uwuifier.com">
-    <img src="plausible.svg" alt="Plausible logo" align="right" height="60" width="60" />
-</a>
+<div align="center">
+  <a href="https://uwuifier.com">
+      <img src="plausible.svg" alt="Plausible logo" align="right" height="60" width="60" />
+  </a>
+</div>
 
 # Plausible
 
@@ -15,10 +17,10 @@ Plausible Analytics account. More information can be found at
 ### Deno
 
 To use the library in Deno, import the module at
-https://deno.land/x/plausible@v2.0.0.
+https://deno.land/x/plausible@v2.0.1.
 
 ```ts
-import Plausible from "https://deno.land/x/plausible@v2.0.0";
+import Plausible from "https://deno.land/x/plausible@v2.0.1";
 ```
 
 ### Node
@@ -41,7 +43,7 @@ Here's an example of how you can use the Plausible class to retrieve the number
 of current visitors on your site:
 
 ```ts
-import Plausible from "https://deno.land/x/plausible@v2.0.0";
+import Plausible from "https://deno.land/x/plausible@v2.0.1";
 
 const key = "your-api-key";
 const site = "your-site-id";
