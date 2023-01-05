@@ -41,7 +41,7 @@ Here's an example of how you can use the Plausible class to retrieve the number
 of current visitors on your site:
 
 ```ts
-import Plausible from "https://deno.land/x/plausible@v2.0.1";
+import Plausible from "https://deno.land/x/plausible@v2.0.1/index.ts";
 
 const key = "your-api-key";
 const site = "your-site-id";
