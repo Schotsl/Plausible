@@ -15,10 +15,10 @@ Plausible Analytics account. More information can be found at
 ### Deno
 
 To use the library in Deno, import the module at
-https://deno.land/x/plausible@v2.0.0.
+https://deno.land/x/plausible@v2.0.0/index.ts.
 
 ```ts
-import Plausible from "https://deno.land/x/plausible@v2.0.0";
+import Plausible from "https://deno.land/x/plausible@v2.0.0/index.ts";
 ```
 
 ### Node
