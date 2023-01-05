@@ -10,7 +10,7 @@ await build({
     undici: true,
   },
   package: {
-    name: "Plausible",
+    name: "plausible",
     bugs: {
       url: "https://github.com/Schotsl/Plausible/issues",
     },
