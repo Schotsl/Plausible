@@ -1,5 +1,4 @@
-dist
-
+.npm
 .env
 .vscode
 .DS_Store
