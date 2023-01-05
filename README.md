@@ -58,11 +58,15 @@ Parameters:
 - `site`: The ID of the site you want to retrieve data for.
 - `url`: (optional): The base URL of the Plausible Analytics API. Defaults to https://plausible.com.
 
+### getRealtime
+
 ```ts
 getRealtime(): Promise<number>
 ```
 
 Retrieves the number of current visitors on your site. A current visitor is defined as a visitor who triggered a pageview on your site in the last 5 minutes.
+
+### getAggregate
 
 ```ts
 getAggregate<Compare extends boolean>(period: Period, metric: Metrics, compare?: Compare | null, filters?: string | null): Promise<Aggregated<Compare>>
@@ -70,7 +74,7 @@ getAggregate<Compare extends boolean>(period: Period, metric: Metrics, compare?:
 
 Aggregates metrics over a certain time period. If you are familiar with the Plausible dashboard, this function corresponds to the top row of stats that include `Unique Visitors` pageviews, `Bounce rate` and `Visit duration`.
 
-Parameters
+#### Parameters
 
 - `period`: The time period to retrieve data for. Possible values are:
     - `"12mo"`
@@ -93,11 +97,15 @@ Parameters
 
 - `filters` (optional): A string containing filters to apply to the data. Filters can be used to segment the data by different dimensions, such as referral source or device type.
 
+### getTimeseries
+
 ```ts
-    getTimeseries<Metric extends Metrics>(period: Period, metric: Metric, filters?: string | null, interval? Interval | null): Promise<Datapoints<Metric>>
+getTimeseries<Metric extends Metrics>(period: Period, metric: Metric, filters?: string | null, interval? Interval | null): Promise<Datapoints<Metric>>
 ```
 
 This function retrieves timeseries data over a certain time period. If you are familiar with the Plausible dashboard, this function corresponds to the main visitor graph.
+
+#### Parameters
 
 - `period`: The time period to retrieve data for. Possible values are:
     - `"12mo"`
@@ -121,6 +129,8 @@ This function retrieves timeseries data over a certain time period. If you are f
 - `interval` (optional): The reporting interval. Defaults to `month` for `6mo` and `12mo`, otherwise falls back to `date`. Possible values are:
     - `"date"`
     - `"month"`
+    
+### getBreakdown
 
 ```ts
 getBreakdown<Property extends Properties, Metric extends Metrics>(period: Period, metric: Metric, property: Property, filter?: string | null, limit?: number | null, page?: number | null): Promise<Breakdowns<Property, Metric>>
@@ -128,7 +138,7 @@ getBreakdown<Property extends Properties, Metric extends Metrics>(period: Period
 
 Retrieves breakdowns of metrics over a certain time period. Breakdowns can be used to segment the data by different dimensions, such as referral source or device type.
 
-Parameters
+#### Parameters
 
 - `period`: The time period to retrieve data for. Possible values are:
     - `"12mo"`
