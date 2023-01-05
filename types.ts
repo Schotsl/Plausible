@@ -20,7 +20,9 @@ export type Metrics =
   | "visitors"
   | "pageviews"
   | "bounce_rate"
-  | "visit_duration";
+  | "visit_duration"
+  | "events"
+  | "visits";
 
 export type Aggregated<Compare extends boolean> = Compare extends true ? {
     value: number;

@@ -137,4 +137,3 @@ export default class Plausible {
     return response.results;
   }
 }
-```
