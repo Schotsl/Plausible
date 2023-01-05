@@ -1,8 +1,6 @@
-<div align="center">
-  <a href="https://uwuifier.com">
-      <img src="plausible.svg" alt="Plausible logo" align="right" height="60" width="60" />
-  </a>
-</div>
+<a href="https://github.com/Schotsl/Plausible">
+  <img src="plausible.svg" alt="Schotsl/Plausible logo" height="60" width="60" />
+</a>
 
 # Plausible
 
@@ -17,10 +15,10 @@ Plausible Analytics account. More information can be found at
 ### Deno
 
 To use the library in Deno, import the module at
-https://deno.land/x/plausible@v2.0.1.
+https://deno.land/x/plausible@v2.0.0/index.ts.
 
 ```ts
-import Plausible from "https://deno.land/x/plausible@v2.0.1";
+import Plausible from "https://deno.land/x/plausible@v2.0.0/index.ts";
 ```
 
 ### Node
