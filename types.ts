@@ -48,5 +48,5 @@ type Breakdown<T extends string, Metric extends Metrics> =
   };
 
 export type Breakdowns<T extends Properties, Metric extends Metrics> = Array<
-  T extends `${infer _}:${infer Key}` ? Breakdown<Key, Metric> : never
+  T extends `${string}:${infer Key}` ? Breakdown<Key, Metric> : never
 >;
