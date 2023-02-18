@@ -127,6 +127,8 @@
     "https://deno.land/x/dnt@0.32.1/transform.ts": "a5f81749ecc145af0730e348d5bb3b9b9c7b922822453561feecbdb0d5462b34",
     "https://deno.land/x/dotenv@v3.2.0/mod.ts": "077b48773de9205266a0b44c3c3a3c3083449ed64bb0b6cc461b95720678d38e",
     "https://deno.land/x/dotenv@v3.2.0/util.ts": "693730877b13f8ead2b79b2aa31e2a0652862f7dc0c5f6d2f313f4d39c7b7670",
+    "https://deno.land/x/dotenv@v3.2.2/mod.ts": "077b48773de9205266a0b44c3c3a3c3083449ed64bb0b6cc461b95720678d38e",
+    "https://deno.land/x/dotenv@v3.2.2/util.ts": "693730877b13f8ead2b79b2aa31e2a0652862f7dc0c5f6d2f313f4d39c7b7670",
     "https://deno.land/x/ts_morph@17.0.1/bootstrap/mod.ts": "b53aad517f106c4079971fcd4a81ab79fadc40b50061a3ab2b741a09119d51e9",
     "https://deno.land/x/ts_morph@17.0.1/bootstrap/ts_morph_bootstrap.d.ts": "607e651c5ae5aa57c2ac4090759a6379e809c0cdc42114742ac67353b1a75038",
     "https://deno.land/x/ts_morph@17.0.1/bootstrap/ts_morph_bootstrap.js": "91a954daa993c5acb3361aa5279394f81ea6fe18b3854345c86111b336491cfc",

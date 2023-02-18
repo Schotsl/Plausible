@@ -1,4 +1,4 @@
-import { config } from "https://deno.land/x/dotenv@v3.2.0/mod.ts";
+import { config } from "https://deno.land/x/dotenv@v3.2.2/mod.ts";
 
 export function initializeEnv(variables: string[]) {
   // Load .env file
