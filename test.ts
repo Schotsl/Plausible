@@ -1,6 +1,6 @@
 import Plausible from "./index.ts";
 
-import { assert } from "https://deno.land/std@0.192.0/testing/asserts.ts";
+import { assert } from "https://deno.land/std@0.193.0/testing/asserts.ts";
 import { initializeEnv } from "./helper.ts";
 
 // Initialize environment variables for test runs
