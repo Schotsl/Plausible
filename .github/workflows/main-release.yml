@@ -40,6 +40,10 @@ jobs:
 
       - name: Run Deno test
         run: deno task test
+        env:
+          PLAUSIBLE_URL: ${{ secrets.PLAUSIBLE_URL }}
+          PLAUSIBLE_SITE: ${{ secrets.PLAUSIBLE_SITE }}
+          PLAUSIBLE_TOKEN: ${{ secrets.PLAUSIBLE_TOKEN }}
 
   publish-npm:
     name: Publish NPM
