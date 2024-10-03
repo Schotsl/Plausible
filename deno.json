@@ -16,7 +16,7 @@
   "tasks": {
     "lint": "deno lint",
     "test": "deno test test.ts --allow-read --allow-env --allow-net",
-    "build": "deno run --allow-env --allow-read --allow-write --allow-net build.ts",
+    "build": "deno run --allow-env --allow-read --allow-write --allow-net --allow-run build.ts",
     "format": "deno fmt",
     "format:check": "deno fmt --check"
   }
