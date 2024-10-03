@@ -1,10 +1,9 @@
 import { build, emptyDir } from "jsr:@deno/dnt";
 
-await emptyDir(".npm");
-
+await emptyDir("./npm");
 await build({
   entryPoints: ["./index.ts"],
-  outDir: ".npm",
+  outDir: "./npm",
   shims: {
     deno: true,
     undici: true,
@@ -26,7 +25,7 @@ await build({
   // Less then ideal but I couldn't get JSR to work in Node while using dnt
   test: false,
   postBuild() {
-    Deno.copyFileSync("README.md", ".npm/README.md");
-    Deno.copyFileSync("LICENSE.md", ".npm/LICENSE.md");
+    Deno.copyFileSync("README.md", "npm/README.md");
+    Deno.copyFileSync("LICENSE.md", "npm/LICENSE.md");
   },
 });
