@@ -82,7 +82,7 @@ minutes.
 ### getAggregate
 
 ```ts
-getAggregate<Compare extends boolean>(period: Period, metric: Metrics, compare?: Compare | null, filters?: string | null): Promise<Aggregated<Compare>>
+getAggregate<Compare extends boolean>(period: Period, metric: Metrics, compare?: Compare | null, filters?: string | null, date?: string | null): Promise<Aggregated<Compare>>
 ```
 
 Aggregates metrics over a certain time period. If you are familiar with the
@@ -115,10 +115,15 @@ include `Unique Visitors` pageviews, `Bounce rate` and `Visit duration`.
   Filters can be used to segment the data by different dimensions, such as
   referral source or device type.
 
+- `date` (optional): A string containing the ISO-8601 end date relative to
+  period (e.g. `2000-01-01`). For example, if using `30d`, setting a date will
+  query for the 30 days before the date. When period is set to `custom`, this
+  expect 2 dates separated by a comma, e.g. `2000-01-01,2000-12-31`.
+
 ### getTimeseries
 
 ```ts
-getTimeseries<Metric extends Metrics>(period: Period, metric: Metric, filters?: string | null, interval? Interval | null): Promise<Datapoints<Metric>>
+getTimeseries<Metric extends Metrics>(period: Period, metric: Metric, filters?: string | null, interval? Interval | null, date?: string | null): Promise<Datapoints<Metric>>
 ```
 
 This function retrieves timeseries data over a certain time period. If you are
@@ -153,10 +158,15 @@ visitor graph.
   - `"date"`
   - `"month"`
 
+- `date` (optional): A string containing the ISO-8601 end date relative to
+  period (e.g. `2000-01-01`). For example, if using `30d`, setting a date will
+  query for the 30 days before the date. When period is set to `custom`, this
+  expect 2 dates separated by a comma, e.g. `2000-01-01,2000-12-31`.
+
 ### getBreakdown
 
 ```ts
-getBreakdown<Property extends Properties, Metric extends Metrics>(period: Period, metric: Metric, property: Property, filter?: string | null, limit?: number | null, page?: number | null): Promise<Breakdowns<Property, Metric>>
+getBreakdown<Property extends Properties, Metric extends Metrics>(period: Period, metric: Metric, property: Property, filter?: string | null, limit?: number | null, page?: number | null, date?: string | null): Promise<Breakdowns<Property, Metric>>
 ```
 
 Retrieves breakdowns of metrics over a certain time period. Breakdowns can be
@@ -205,6 +215,11 @@ device type.
 
 - `offset`: Number of the page, used to paginate results. Importantly, the page
   numbers start from 1 not 0.
+
+- `date` (optional): A string containing the ISO-8601 end date relative to
+  period (e.g. `2000-01-01`). For example, if using `30d`, setting a date will
+  query for the 30 days before the date. When period is set to `custom`, this
+  expect 2 dates separated by a comma, e.g. `2000-01-01,2000-12-31`.
 
 ## License
 
