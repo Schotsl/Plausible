@@ -15,7 +15,7 @@ await build({
       url: "https://github.com/Schotsl/Plausible/issues",
     },
     license: "MIT",
-    version: "v2.0.2",
+    version: "v2.2.0",
     description:
       "A zero-dependency, TypeScript library for interacting with the Plausible Analytics API, written in Deno!",
     repository: {

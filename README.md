@@ -15,10 +15,10 @@ Plausible Analytics account. More information can be found at
 ### Deno
 
 To use the library in Deno, import the module at
-https://deno.land/x/plausible@v2.0.2/index.ts.
+https://deno.land/x/plausible@v2.2.0/index.ts.
 
 ```ts
-import Plausible from "https://deno.land/x/plausible@v2.0.2/index.ts";
+import Plausible from "https://deno.land/x/plausible@v2.2.0/index.ts";
 ```
 
 ### Node
@@ -41,7 +41,7 @@ Here's an example of how you can use the Plausible class to retrieve the number
 of current visitors on your site:
 
 ```ts
-import Plausible from "https://deno.land/x/plausible@v2.0.2/index.ts";
+import Plausible from "https://deno.land/x/plausible@v2.2.0/index.ts";
 
 const key = "your-api-key";
 const site = "your-site-id";
@@ -92,6 +92,7 @@ include `Unique Visitors` pageviews, `Bounce rate` and `Visit duration`.
 #### Parameters
 
 - `period`: The time period to retrieve data for. Possible values are:
+
   - `"12mo"`
   - `"6mo"`
   - `"month"`
@@ -101,6 +102,7 @@ include `Unique Visitors` pageviews, `Bounce rate` and `Visit duration`.
   - `"custom"`
 
 - `metric`: The metric to retrieve. Possible values are:
+
   - `"visitors"`
   - `"pageviews"`
   - `"bounce_rate"`
@@ -133,6 +135,7 @@ visitor graph.
 #### Parameters
 
 - `period`: The time period to retrieve data for. Possible values are:
+
   - `"12mo"`
   - `"6mo"`
   - `"month"`
@@ -142,6 +145,7 @@ visitor graph.
   - `"custom"`
 
 - `metric`: The metric to retrieve. Possible values are:
+
   - `"visitors"`
   - `"pageviews"`
   - `"bounce_rate"`
@@ -155,6 +159,7 @@ visitor graph.
 
 - `interval` (optional): The reporting interval. Defaults to `month` for `6mo`
   and `12mo`, otherwise falls back to `date`. Possible values are:
+
   - `"date"`
   - `"month"`
 
@@ -176,6 +181,7 @@ device type.
 #### Parameters
 
 - `period`: The time period to retrieve data for. Possible values are:
+
   - `"12mo"`
   - `"6mo"`
   - `"month"`
@@ -185,6 +191,7 @@ device type.
   - `"custom"`
 
 - `metric`: The metric to retrieve. Possible values are:
+
   - `"visitors"`
   - `"pageviews"`
   - `"bounce_rate"`
@@ -193,6 +200,7 @@ device type.
   - `"visits"`
 
 - `property`: The property to group the data by. Possible values are
+
   - `"event:name"`
   - `"event:page"`
   - `"visit:source"`
