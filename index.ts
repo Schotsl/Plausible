@@ -67,6 +67,7 @@ export default class Plausible {
     metric: Metrics,
     compare?: Compare | null,
     filters?: string | null,
+    date?: string | null,
   ): Promise<Aggregated<Compare>> {
     const params = new URLSearchParams();
 
@@ -75,6 +76,7 @@ export default class Plausible {
 
     if (compare) params.append(`compare`, "previous_period");
     if (filters) params.append("filters", filters);
+    if (date) params.append("date", date);
 
     const response = await this.getAbstract(`api/v1/stats/aggregate`, params);
 
@@ -93,6 +95,7 @@ export default class Plausible {
     metric: Metric,
     filters?: string | null,
     interval?: Interval | null,
+    date?: string | null,
   ): Promise<Datapoints<Metric>> {
     const params = new URLSearchParams();
 
@@ -101,6 +104,7 @@ export default class Plausible {
     if (metric) params.append(`metrics`, metric);
     if (filters) params.append(`filters`, filters);
     if (interval) params.append("interval", interval);
+    if (date) params.append("date", date);
 
     const response = await this.getAbstract(`api/v1/stats/timeseries`, params);
     return response.results;
@@ -121,6 +125,7 @@ export default class Plausible {
     filter?: string | null,
     limit?: number | null,
     page?: number | null,
+    date?: string | null,
   ): Promise<Breakdowns<Property, Metric>> {
     const params = new URLSearchParams();
 
@@ -132,6 +137,7 @@ export default class Plausible {
 
     if (page) params.append("page", page.toString());
     if (limit) params.append("limit", limit.toString());
+    if (date) params.append("date", date);
 
     const response = await this.getAbstract(`api/v1/stats/breakdown`, params);
     return response.results;
