@@ -23,7 +23,10 @@ await build({
       url: "git+https://github.com/Schotsl/Plausible",
     },
   },
+  // Less then ideal but I couldn't get JSR to work in Node while using dnt
+  test: false,
+  postBuild() {
+    Deno.copyFileSync("README.md", ".npm/README.md");
+    Deno.copyFileSync("LICENSE.md", ".npm/LICENSE.md");
+  },
 });
-
-Deno.copyFileSync("README.md", ".npm/README.md");
-Deno.copyFileSync("LICENSE.md", ".npm/LICENSE.md");
