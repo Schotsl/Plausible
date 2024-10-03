@@ -3,14 +3,10 @@
   "version": "1.2.0",
   "exports": "./index.ts",
   "lint": {
-    "files": {
-      "exclude": [".npm"]
-    }
+    "exclude": [".npm"]
   },
   "fmt": {
-    "files": {
-      "exclude": [".npm"]
-    }
+    "exclude": [".npm"]
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@^1.0.6",

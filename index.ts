@@ -1,6 +1,6 @@
 // deno-lint-ignore-file no-explicit-any
 
-import {
+import type {
   Aggregated,
   Breakdowns,
   Datapoints,
@@ -39,13 +39,13 @@ export default class Plausible {
     const response = await fetch(endpoint, {
       method: `GET`,
       headers: {
-        "Authorization": `Bearer ${this.key}`,
+        Authorization: `Bearer ${this.key}`,
         "Content-Type": `application/json`,
       },
     });
 
     // Throw the error if the API has provided one
-    const parsed = await response.json() as any;
+    const parsed = (await response.json()) as any;
     if (parsed.error) throw new Error(parsed.error);
 
     // Otherwise just return the results

@@ -1,14 +1,10 @@
 import Plausible from "./index.ts";
 
-import { assert } from "https://deno.land/std@0.220.1/testing/asserts.ts";
+import { assert } from "@std/assert";
 import { initializeEnv } from "./helper.ts";
 
 // Initialize environment variables for test runs
-initializeEnv([
-  "PLAUSIBLE_TOKEN",
-  "PLAUSIBLE_SITE",
-  "PLAUSIBLE_URL",
-]);
+initializeEnv(["PLAUSIBLE_TOKEN", "PLAUSIBLE_SITE", "PLAUSIBLE_URL"]);
 
 const plausible = new Plausible(
   Deno.env.get("PLAUSIBLE_TOKEN")!,
