@@ -15,10 +15,10 @@ Plausible Analytics account. More information can be found at
 ### Deno
 
 To use the library in Deno, import the module at
-https://deno.land/x/plausible@v2.2.0/index.ts.
+https://deno.land/x/plausible@v2.2.1/index.ts.
 
 ```ts
-import Plausible from "https://deno.land/x/plausible@v2.2.0/index.ts";
+import Plausible from "https://deno.land/x/plausible@v2.2.1/index.ts";
 ```
 
 ### Node
@@ -41,7 +41,7 @@ Here's an example of how you can use the Plausible class to retrieve the number
 of current visitors on your site:
 
 ```ts
-import Plausible from "https://deno.land/x/plausible@v2.2.0/index.ts";
+import Plausible from "https://deno.land/x/plausible@v2.2.1/index.ts";
 
 const key = "your-api-key";
 const site = "your-site-id";
