@@ -14,7 +14,8 @@ export type Properties =
   | "visit:browser_version"
   | "visit:os"
   | "visit:os_version"
-  | "visit:country";
+  | "visit:country"
+  | `event:props:${string}`;
 
 export type Metrics =
   | "visitors"
